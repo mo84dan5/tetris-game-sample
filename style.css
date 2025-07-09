@@ -117,10 +117,6 @@ h1 {
 
 .touch-controls {
     display: none;
-    position: fixed;
-    bottom: 20px;
-    left: 0;
-    right: 0;
     padding: 0 20px;
     justify-content: space-between;
     gap: 20px;
@@ -175,9 +171,12 @@ h1 {
     .container {
         padding: 5px;
         height: 100vh;
+        max-height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+        overflow: hidden;
+        box-sizing: border-box;
     }
     
     .game-wrapper {
@@ -197,9 +196,9 @@ h1 {
     }
     
     #gameCanvas {
-        width: 200px;
-        height: 400px;
-        max-height: 50vh;
+        width: 180px;
+        height: 360px;
+        max-height: 40vh;
     }
     
     .controls {
@@ -215,8 +214,7 @@ h1 {
     .touch-controls {
         display: flex;
         padding: 0 10px;
-        position: static;
-        margin-top: 10px;
+        margin-top: 5px;
     }
     
     .touch-btn {

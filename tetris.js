@@ -327,9 +327,9 @@ document.getElementById('resetBtn').addEventListener('click', resetGame);
 
 function adjustCanvasSize() {
     if (window.innerWidth <= 768) {
-        canvasWidth = 200;
-        canvasHeight = 400;
-        BLOCK_SIZE = 20;
+        canvasWidth = 180;
+        canvasHeight = 360;
+        BLOCK_SIZE = 18;
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
         
