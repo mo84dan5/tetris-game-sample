@@ -188,6 +188,15 @@ function updateScore() {
     document.getElementById('score').textContent = score;
     document.getElementById('level').textContent = level;
     document.getElementById('lines').textContent = lines;
+    
+    // モバイル用スコア表示も更新
+    const mobileScore = document.getElementById('mobile-score');
+    const mobileLevel = document.getElementById('mobile-level');
+    const mobileLines = document.getElementById('mobile-lines');
+    
+    if (mobileScore) mobileScore.textContent = score;
+    if (mobileLevel) mobileLevel.textContent = level;
+    if (mobileLines) mobileLines.textContent = lines;
 }
 
 function movePiece(dx, dy) {
@@ -318,9 +327,9 @@ document.getElementById('resetBtn').addEventListener('click', resetGame);
 
 function adjustCanvasSize() {
     if (window.innerWidth <= 768) {
-        canvasWidth = 250;
-        canvasHeight = 500;
-        BLOCK_SIZE = 25;
+        canvasWidth = 200;
+        canvasHeight = 400;
+        BLOCK_SIZE = 20;
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
         

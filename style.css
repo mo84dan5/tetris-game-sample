@@ -161,6 +161,10 @@ h1 {
     display: none;
 }
 
+.mobile-score {
+    display: none;
+}
+
 @media (max-width: 768px) {
     body {
         touch-action: manipulation;
@@ -169,68 +173,58 @@ h1 {
     }
     
     .container {
-        padding: 10px;
+        padding: 5px;
         height: 100vh;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
     }
     
     .game-wrapper {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
-        margin-bottom: 10px;
+        gap: 5px;
+        margin-bottom: 5px;
+        flex: 1;
+        display: flex;
+        justify-content: center;
     }
     
     h1 {
-        font-size: 1.5em;
-        margin-bottom: 10px;
+        font-size: 1.2em;
+        margin: 5px 0;
     }
     
     .game-info {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: 300px;
-        gap: 10px;
-    }
-    
-    .score-board, .level-board, .lines-board, .next-piece {
-        flex: 1 1 45%;
-        min-width: 120px;
-        padding: 10px;
-    }
-    
-    .score-board h3, .level-board h3, .lines-board h3, .next-piece h3 {
-        font-size: 1em;
-        margin-bottom: 5px;
-    }
-    
-    .score-board p, .level-board p, .lines-board p {
-        font-size: 1.5em;
-    }
-    
-    #nextCanvas {
-        width: 80px;
-        height: 80px;
+        display: none;
     }
     
     #gameCanvas {
-        width: 250px;
-        height: 500px;
+        width: 200px;
+        height: 400px;
+        max-height: 50vh;
     }
     
     .controls {
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
     
     .controls button {
-        padding: 8px 15px;
-        font-size: 0.9em;
+        padding: 6px 12px;
+        font-size: 0.8em;
+        margin: 0 2px;
     }
     
     .touch-controls {
         display: flex;
+        padding: 0 10px;
+        bottom: 10px;
+    }
+    
+    .touch-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
     }
     
     .desktop-only {
@@ -243,5 +237,19 @@ h1 {
     
     .instructions {
         display: none;
+    }
+    
+    .mobile-score {
+        display: flex;
+        justify-content: space-around;
+        background-color: #2a2a2a;
+        padding: 5px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        font-size: 0.9em;
+    }
+    
+    .mobile-score span {
+        color: #0ff;
     }
 }
