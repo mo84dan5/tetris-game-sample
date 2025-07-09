@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(45deg, #00f, #0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.game-wrapper {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.game-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.score-board, .level-board, .lines-board, .next-piece {
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.score-board h3, .level-board h3, .lines-board h3, .next-piece h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+    color: #0ff;
+}
+
+.score-board p, .level-board p, .lines-board p {
+    margin: 0;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#gameCanvas {
+    border: 3px solid #0ff;
+    background-color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+#nextCanvas {
+    border: 2px solid #0ff;
+    background-color: #000;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+.controls button {
+    background-color: #0ff;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.controls button:hover {
+    background-color: #00f;
+}
+
+.controls button:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
+
+.instructions {
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.instructions h3 {
+    margin-top: 0;
+    color: #0ff;
+}
+
+.instructions p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+    .game-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    .game-info {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 300px;
+    }
+    
+    .score-board, .level-board, .lines-board, .next-piece {
+        flex: 1 1 45%;
+        min-width: 120px;
+    }
+}
