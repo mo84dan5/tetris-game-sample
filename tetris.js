@@ -5,7 +5,9 @@ const nextCtx = nextCanvas.getContext('2d');
 
 const ROWS = 20;
 const COLS = 10;
-const BLOCK_SIZE = 30;
+let BLOCK_SIZE = 30;
+let canvasWidth = 300;
+let canvasHeight = 600;
 
 let board = [];
 let currentPiece = null;
@@ -102,6 +104,7 @@ function drawPiece(piece) {
 function drawNextPiece() {
     nextCtx.clearRect(0, 0, nextCanvas.width, nextCanvas.height);
     if (nextPiece) {
+        const blockSize = window.innerWidth <= 768 ? 20 : 30;
         const offsetX = (4 - nextPiece.shape[0].length) / 2;
         const offsetY = (4 - nextPiece.shape.length) / 2;
         
@@ -109,9 +112,9 @@ function drawNextPiece() {
             for (let c = 0; c < nextPiece.shape[r].length; c++) {
                 if (nextPiece.shape[r][c]) {
                     nextCtx.fillStyle = COLORS[nextPiece.type];
-                    nextCtx.fillRect((offsetX + c) * 30, (offsetY + r) * 30, 30, 30);
+                    nextCtx.fillRect((offsetX + c) * blockSize, (offsetY + r) * blockSize, blockSize, blockSize);
                     nextCtx.strokeStyle = '#333';
-                    nextCtx.strokeRect((offsetX + c) * 30, (offsetY + r) * 30, 30, 30);
+                    nextCtx.strokeRect((offsetX + c) * blockSize, (offsetY + r) * blockSize, blockSize, blockSize);
                 }
             }
         }
@@ -313,5 +316,106 @@ document.getElementById('startBtn').addEventListener('click', startGame);
 document.getElementById('pauseBtn').addEventListener('click', pauseGame);
 document.getElementById('resetBtn').addEventListener('click', resetGame);
 
+function adjustCanvasSize() {
+    if (window.innerWidth <= 768) {
+        canvasWidth = 250;
+        canvasHeight = 500;
+        BLOCK_SIZE = 25;
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+        
+        const nextSize = 80;
+        nextCanvas.width = nextSize;
+        nextCanvas.height = nextSize;
+    }
+}
+
+function setupTouchControls() {
+    const touchLeft = document.getElementById('touchLeft');
+    const touchRight = document.getElementById('touchRight');
+    const touchDown = document.getElementById('touchDown');
+    const touchRotate = document.getElementById('touchRotate');
+    const touchDrop = document.getElementById('touchDrop');
+    
+    let touchInterval = null;
+    
+    const handleTouchStart = (action) => {
+        if (!gameRunning || gamePaused) return;
+        
+        action();
+        
+        touchInterval = setInterval(() => {
+            if (!gameRunning || gamePaused) {
+                clearInterval(touchInterval);
+                return;
+            }
+            action();
+        }, 100);
+    };
+    
+    const handleTouchEnd = () => {
+        if (touchInterval) {
+            clearInterval(touchInterval);
+            touchInterval = null;
+        }
+    };
+    
+    touchLeft.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        handleTouchStart(() => movePiece(-1, 0));
+    });
+    
+    touchRight.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        handleTouchStart(() => movePiece(1, 0));
+    });
+    
+    touchDown.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        handleTouchStart(() => {
+            if (movePiece(0, 1)) {
+                score += 1;
+                updateScore();
+            }
+        });
+    });
+    
+    touchRotate.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        rotatePiece();
+    });
+    
+    touchDrop.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        hardDrop();
+    });
+    
+    [touchLeft, touchRight, touchDown].forEach(btn => {
+        btn.addEventListener('touchend', handleTouchEnd);
+        btn.addEventListener('touchcancel', handleTouchEnd);
+    });
+    
+    touchLeft.addEventListener('click', () => movePiece(-1, 0));
+    touchRight.addEventListener('click', () => movePiece(1, 0));
+    touchDown.addEventListener('click', () => {
+        if (movePiece(0, 1)) {
+            score += 1;
+            updateScore();
+        }
+    });
+    touchRotate.addEventListener('click', () => rotatePiece());
+    touchDrop.addEventListener('click', () => hardDrop());
+}
+
+adjustCanvasSize();
+setupTouchControls();
 initBoard();
 drawBoard();
+
+window.addEventListener('resize', () => {
+    adjustCanvasSize();
+    drawBoard();
+    if (currentPiece) {
+        drawPiece(currentPiece);
+    }
+});

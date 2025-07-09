@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>テトリス</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -35,12 +35,24 @@
             <button id="pauseBtn">一時停止</button>
             <button id="resetBtn">リセット</button>
         </div>
+        <div class="touch-controls">
+            <div class="touch-left">
+                <button id="touchLeft" class="touch-btn">◀</button>
+                <button id="touchRotate" class="touch-btn">↻</button>
+                <button id="touchRight" class="touch-btn">▶</button>
+            </div>
+            <div class="touch-right">
+                <button id="touchDown" class="touch-btn">▼</button>
+                <button id="touchDrop" class="touch-btn">⬇</button>
+            </div>
+        </div>
         <div class="instructions">
             <h3>操作方法</h3>
-            <p>← → : 左右移動</p>
-            <p>↓ : 高速落下</p>
-            <p>↑ : 回転</p>
-            <p>スペース : ハードドロップ</p>
+            <p class="desktop-only">← → : 左右移動</p>
+            <p class="desktop-only">↓ : 高速落下</p>
+            <p class="desktop-only">↑ : 回転</p>
+            <p class="desktop-only">スペース : ハードドロップ</p>
+            <p class="mobile-only">画面下のボタンで操作</p>
         </div>
     </div>
     <script src="tetris.js"></script>

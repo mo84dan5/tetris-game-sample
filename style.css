@@ -113,14 +113,74 @@ h1 {
     font-size: 0.9em;
 }
 
+.touch-controls {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    padding: 0 20px;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.touch-left, .touch-right {
+    display: flex;
+    gap: 10px;
+}
+
+.touch-btn {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 255, 255, 0.8);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.touch-btn:active {
+    background-color: #00f;
+    transform: scale(0.95);
+}
+
+.desktop-only {
+    display: block;
+}
+
+.mobile-only {
+    display: none;
+}
+
 @media (max-width: 768px) {
+    body {
+        touch-action: none;
+        overflow: hidden;
+    }
+    
+    .container {
+        padding: 10px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
     .game-wrapper {
         flex-direction: column;
         align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
     }
     
     h1 {
-        font-size: 2em;
+        font-size: 1.5em;
+        margin-bottom: 10px;
     }
     
     .game-info {
@@ -128,10 +188,56 @@ h1 {
         flex-wrap: wrap;
         justify-content: center;
         max-width: 300px;
+        gap: 10px;
     }
     
     .score-board, .level-board, .lines-board, .next-piece {
         flex: 1 1 45%;
         min-width: 120px;
+        padding: 10px;
+    }
+    
+    .score-board h3, .level-board h3, .lines-board h3, .next-piece h3 {
+        font-size: 1em;
+        margin-bottom: 5px;
+    }
+    
+    .score-board p, .level-board p, .lines-board p {
+        font-size: 1.5em;
+    }
+    
+    #nextCanvas {
+        width: 80px;
+        height: 80px;
+    }
+    
+    #gameCanvas {
+        width: 250px;
+        height: 500px;
+    }
+    
+    .controls {
+        margin-bottom: 10px;
+    }
+    
+    .controls button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    
+    .touch-controls {
+        display: flex;
+    }
+    
+    .desktop-only {
+        display: none;
+    }
+    
+    .mobile-only {
+        display: block;
+    }
+    
+    .instructions {
+        display: none;
     }
 }
