@@ -395,16 +395,40 @@ function setupTouchControls() {
         btn.addEventListener('touchcancel', handleTouchEnd);
     });
     
-    touchLeft.addEventListener('click', () => movePiece(-1, 0));
-    touchRight.addEventListener('click', () => movePiece(1, 0));
-    touchDown.addEventListener('click', () => {
+    touchLeft.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!gameRunning || gamePaused) return;
+        movePiece(-1, 0);
+    });
+    touchRight.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!gameRunning || gamePaused) return;
+        movePiece(1, 0);
+    });
+    touchDown.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!gameRunning || gamePaused) return;
         if (movePiece(0, 1)) {
             score += 1;
             updateScore();
         }
     });
-    touchRotate.addEventListener('click', () => rotatePiece());
-    touchDrop.addEventListener('click', () => hardDrop());
+    touchRotate.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!gameRunning || gamePaused) return;
+        rotatePiece();
+    });
+    touchDrop.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!gameRunning || gamePaused) return;
+        hardDrop();
+    });
+    
+    [touchLeft, touchRight, touchDown, touchRotate, touchDrop].forEach(btn => {
+        btn.addEventListener('dblclick', (e) => {
+            e.preventDefault();
+        });
+    });
 }
 
 adjustCanvasSize();

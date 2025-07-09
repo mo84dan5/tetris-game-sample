@@ -8,6 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    touch-action: pan-y;
 }
 
 .container {
@@ -84,6 +85,7 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    touch-action: manipulation;
 }
 
 .controls button:hover {
@@ -143,6 +145,7 @@ h1 {
     user-select: none;
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .touch-btn:active {
@@ -160,8 +163,9 @@ h1 {
 
 @media (max-width: 768px) {
     body {
-        touch-action: none;
+        touch-action: manipulation;
         overflow: hidden;
+        -webkit-touch-callout: none;
     }
     
     .container {
