@@ -177,7 +177,7 @@ h1 {
         height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
     
     .game-wrapper {
@@ -185,9 +185,6 @@ h1 {
         align-items: center;
         gap: 5px;
         margin-bottom: 5px;
-        flex: 1;
-        display: flex;
-        justify-content: center;
     }
     
     h1 {
@@ -218,7 +215,8 @@ h1 {
     .touch-controls {
         display: flex;
         padding: 0 10px;
-        bottom: 10px;
+        position: static;
+        margin-top: 10px;
     }
     
     .touch-btn {
